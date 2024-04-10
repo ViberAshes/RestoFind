@@ -1,19 +1,9 @@
 import 'dart:io';
-
-
-
 import 'package:firebase_auth/firebase_auth.dart';
-
-
 import 'package:get/get.dart';
-
-
-
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:path/path.dart' as Path;
-
 import '../Home.dart';
-import '../add_profile.dart';
-
 
 
 class AuthController extends GetxController {
@@ -24,31 +14,28 @@ class AuthController extends GetxController {
   void login({String? email, String? password}) {
     isLoading(true);
 
-    auth.signInWithEmailAndPassword(email: email!, password: password!).then((value) {
+    auth.signInWithEmailAndPassword(email: email!, password: password!).then((
+        value) {
       /// Login Success
-
       isLoading(false);
-      Get.to(() => Home());
+      Get.offAll(() => Home()); // Use Get.offAll to remove all previous routes
     }).catchError((e) {
       isLoading(false);
       Get.snackbar('Error', "$e");
 
-      ///Error occured
+      /// Error occurred
     });
   }
 
   void signUp({String? email, String? password}) {
-    ///here we have to provide two things
-    ///1- email
-    ///2- password
-
     isLoading(true);
 
-    auth.createUserWithEmailAndPassword(email: email!, password: password!).then((value) {
+    auth.createUserWithEmailAndPassword(email: email!, password: password!)
+        .then((value) {
       isLoading(false);
 
       /// Navigate user to profile screen
-      Get.to(() => AddProfileScreen());
+      Get.offAll(() => Home()); // Use Get.offAll to remove all previous routes
     }).catchError((e) {
       /// print error information
       print("Error in authentication $e");
@@ -64,7 +51,8 @@ class AuthController extends GetxController {
       print("Error in sending password reset email is $e");
     });
   }
-/**
+
+
   signInWithGoogle() async {
     isLoading(true);
     // Trigger the authentication flow
@@ -85,15 +73,14 @@ class AuthController extends GetxController {
       isLoading(false);
 
       ///SuccessFull loged in
-      Get.to(() => BottomBarView());
+      Get.to(() => Home());
     }).catchError((e) {
       /// Error in getting Login
       isLoading(false);
       print("Error is $e");
     });
   }
-**/
-
+}
   var isProfileInformationLoading = false.obs;
 
 /**  Future<String> uploadImageToFirebaseStorage(File image) async {
@@ -133,4 +120,3 @@ class AuthController extends GetxController {
     });
 
   }**/
-}

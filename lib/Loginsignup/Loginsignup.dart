@@ -84,7 +84,7 @@ class _LoginViewState extends State<LoginView> {
                     ? Container(
                   child: myText(
                     text:
-                    'Welcome, Please Sign up to see events and classes from your friends.',
+                    'Welcome, Please Sign up to Make Orders.',
                     style: GoogleFonts.roboto(
                       letterSpacing: 0,
                       fontSize: 18,
@@ -291,19 +291,10 @@ class _LoginViewState extends State<LoginView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               socialAppsIcons(
-                  text: 'assets/facebook.png',
-                  onPressed: (){
-
-                    Get.to(()=> Home());
-
-                  }
-              ),
-
-              socialAppsIcons(
                   text: 'assets/google.png',
                   onPressed: (){
 
-                //    authController.signInWithGoogle();
+                    authController.signInWithGoogle();
 
                   }
 
@@ -406,17 +397,12 @@ class _LoginViewState extends State<LoginView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                socialAppsIcons(
-                    text: 'assets/facebook.png',
-                    onPressed: (){
-                      //
-                    }
-                ),
+
 
                 socialAppsIcons(
                     text: 'assets/google.png',
                     onPressed: (){
-                      //
+                      authController.signInWithGoogle();
                     }
                 ),
               ],

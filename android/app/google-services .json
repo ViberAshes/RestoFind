@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "996601875243",
+    "project_id": "restofinder-e0a65",
+    "storage_bucket": "restofinder-e0a65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996601875243:android:ca13f2d8c006947058d36e",
+        "android_client_info": {
+          "package_name": "com.example.restoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996601875243-ip6kbd4kmul42nnu12spfgpphe2jjrda.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.restoapp",
+            "certificate_hash": "cde5666d1ab29ccde0945536836caec5e54b840e"
+          }
+        },
+        {
+          "client_id": "996601875243-mih0llsa572ia2s6d90pha4b0qma7orl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEIMiiPowKiLj0DsccTtajcgix8RDjCMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996601875243-mih0llsa572ia2s6d90pha4b0qma7orl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "996601875243-josnlhi113e0m1oa1n0jrfoleet3aiqi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.restoapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
