@@ -1,17 +1,13 @@
 import 'dart:ui';
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 import '../../controller/auth_controller.dart';
 import '../../utils/app_color.dart';
 import '../../widgets/my_widgets.dart';
-import '../Home.dart';
-
-
+import 'package:restoapp/drawer/mainDrawer.dart';
 
 class LoginView extends StatefulWidget {
   LoginView({Key? key}) : super(key: key);
@@ -21,8 +17,6 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-
-
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
@@ -46,7 +40,6 @@ class _LoginViewState extends State<LoginView> {
     // TODO: implement initState
     super.initState();
     authController = Get.put(AuthController());
-
   }
 
   @override
@@ -64,47 +57,46 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 isSignUp
                     ? myText(
-                  text: 'Sign Up',
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.w600,
-                  ),
-                )
+                        text: 'Sign Up',
+                        style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
                     : myText(
-                  text: 'Login',
-                  style: GoogleFonts.poppins(
-                    fontSize: 23,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                        text: 'Login',
+                        style: GoogleFonts.poppins(
+                          fontSize: 23,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                 SizedBox(
                   height: Get.height * 0.03,
                 ),
                 isSignUp
                     ? Container(
-                  child: myText(
-                    text:
-                    'Welcome, Please Sign up to Make Orders.',
-                    style: GoogleFonts.roboto(
-                      letterSpacing: 0,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                )
+                        child: myText(
+                          text: 'Welcome, Please Sign up to Make Orders.',
+                          style: GoogleFonts.roboto(
+                            letterSpacing: 0,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      )
                     : Container(
-                  child: myText(
-                    text:
-                    'Welcome back, Please Sign in and continue your journey with us.',
-                    style: GoogleFonts.roboto(
-                      letterSpacing: 0,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+                        child: myText(
+                          text:
+                              'Welcome back, Please Sign in and continue your journey with us.',
+                          style: GoogleFonts.roboto(
+                            letterSpacing: 0,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                 SizedBox(
                   height: Get.height * 0.03,
                 ),
@@ -164,8 +156,7 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-
-  Widget LoginWidget(){
+  Widget LoginWidget() {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -176,19 +167,22 @@ class _LoginViewState extends State<LoginView> {
                   bool: false,
                   icon: 'assets/mail.png',
                   text: 'sarasmith12@gmail.com',
-                  validator: (String input){
-                    if(input.isEmpty){
-                      Get.snackbar('Warning', 'Email is required.',colorText: Colors.white,backgroundColor: Colors.blue);
+                  validator: (String input) {
+                    if (input.isEmpty) {
+                      Get.snackbar('Warning', 'Email is required.',
+                          colorText: Colors.white,
+                          backgroundColor: Colors.blue);
                       return '';
                     }
 
-                    if(!input.contains('@')){
-                      Get.snackbar('Warning', 'Email is invalid.',colorText: Colors.white,backgroundColor: Colors.blue);
+                    if (!input.contains('@')) {
+                      Get.snackbar('Warning', 'Email is invalid.',
+                          colorText: Colors.white,
+                          backgroundColor: Colors.blue);
                       return '';
                     }
                   },
-                  controller: emailController
-              ),
+                  controller: emailController),
               SizedBox(
                 height: Get.height * 0.02,
               ),
@@ -196,19 +190,23 @@ class _LoginViewState extends State<LoginView> {
                   bool: true,
                   icon: 'assets/lock.png',
                   text: 'password',
-                  validator: (String input){
-                    if(input.isEmpty){
-                      Get.snackbar('Warning', 'Password is required.',colorText: Colors.white,backgroundColor: Colors.blue);
+                  validator: (String input) {
+                    if (input.isEmpty) {
+                      Get.snackbar('Warning', 'Password is required.',
+                          colorText: Colors.white,
+                          backgroundColor: Colors.blue);
                       return '';
                     }
 
-                    if(input.length <6){
-                      Get.snackbar('Warning', 'Password should be 6+ characters.',colorText: Colors.white,backgroundColor: Colors.blue);
+                    if (input.length < 6) {
+                      Get.snackbar(
+                          'Warning', 'Password should be 6+ characters.',
+                          colorText: Colors.white,
+                          backgroundColor: Colors.blue);
                       return '';
                     }
                   },
-                  controller: passwordController
-              ),
+                  controller: passwordController),
               InkWell(
                 onTap: () {
                   Get.defaultDialog(
@@ -221,23 +219,22 @@ class _LoginViewState extends State<LoginView> {
                                 bool: false,
                                 icon: 'assets/mail.png',
                                 text: 'enter your email...',
-                                controller: forgetEmailController
-                            ),
-
+                                controller: forgetEmailController),
                             SizedBox(
                               height: 10,
                             ),
-
                             MaterialButton(
                               color: Colors.blue,
-                              onPressed: (){
-                                authController.forgetPassword(forgetEmailController.text.trim());
-                              },child: Text("Sent"),minWidth: double.infinity,)
-
+                              onPressed: () {
+                                authController.forgetPassword(
+                                    forgetEmailController.text.trim());
+                              },
+                              child: Text("Sent"),
+                              minWidth: double.infinity,
+                            )
                           ],
                         ),
-                      )
-                  );
+                      ));
                 },
                 child: Container(
                   margin: EdgeInsets.only(
@@ -254,25 +251,27 @@ class _LoginViewState extends State<LoginView> {
               ),
             ],
           ),
-          Obx(()=> authController.isLoading.value? Center(child: CircularProgressIndicator(),) :Container(
-            height: 50,
-            margin: EdgeInsets.symmetric(
-                vertical: Get.height * 0.04),
-            width: Get.width,
-            child: elevatedButton(
-              text: 'Login',
-              onpress: () {
+          Obx(() => authController.isLoading.value
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Container(
+                  height: 50,
+                  margin: EdgeInsets.symmetric(vertical: Get.height * 0.04),
+                  width: Get.width,
+                  child: elevatedButton(
+                    text: 'Login',
+                    onpress: () {
+                      if (!formKey.currentState!.validate()) {
+                        return;
+                      }
 
-                if(!formKey.currentState!.validate()){
-                  return;
-                }
-
-                authController.login(email: emailController.text.trim(),password: passwordController.text.trim());
-
-
-              },
-            ),
-          )),
+                      authController.login(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim());
+                    },
+                  ),
+                )),
           SizedBox(
             height: Get.height * 0.02,
           ),
@@ -292,13 +291,9 @@ class _LoginViewState extends State<LoginView> {
             children: [
               socialAppsIcons(
                   text: 'assets/google.png',
-                  onPressed: (){
-
+                  onPressed: () {
                     authController.signInWithGoogle();
-
-                  }
-
-              ),
+                  }),
             ],
           )
         ],
@@ -306,134 +301,127 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Widget SignUpWidget(){
+  Widget SignUpWidget() {
     return SingleChildScrollView(
         child: Column(
-          children: [
+      children: [
+        myTextField(
+            bool: false,
+            icon: 'assets/mail.png',
+            text: 'Email',
+            validator: (String input) {
+              if (input.isEmpty) {
+                Get.snackbar('Warning', 'Email is required.',
+                    colorText: Colors.white, backgroundColor: Colors.blue);
+                return '';
+              }
 
+              if (!input.contains('@')) {
+                Get.snackbar('Warning', 'Email is invalid.',
+                    colorText: Colors.white, backgroundColor: Colors.blue);
+                return '';
+              }
+            },
+            controller: emailController),
+        SizedBox(
+          height: Get.height * 0.02,
+        ),
+        myTextField(
+            bool: true,
+            icon: 'assets/lock.png',
+            text: 'password',
+            validator: (String input) {
+              if (input.isEmpty) {
+                Get.snackbar('Warning', 'Password is required.',
+                    colorText: Colors.white, backgroundColor: Colors.blue);
+                return '';
+              }
 
-            myTextField(
-                bool: false,
-                icon: 'assets/mail.png',
-                text: 'Email',
-                validator: (String input){
-                  if(input.isEmpty){
-                    Get.snackbar('Warning', 'Email is required.',colorText: Colors.white,backgroundColor: Colors.blue);
-                    return '';
-                  }
-
-                  if(!input.contains('@')){
-                    Get.snackbar('Warning', 'Email is invalid.',colorText: Colors.white,backgroundColor: Colors.blue);
-                    return '';
-                  }
-                },
-                controller: emailController
-            ),
-            SizedBox(
-              height: Get.height * 0.02,
-            ),
-            myTextField(
-                bool: true,
-                icon: 'assets/lock.png',
-                text: 'password',
-                validator: (String input){
-                  if(input.isEmpty){
-                    Get.snackbar('Warning', 'Password is required.',colorText: Colors.white,backgroundColor: Colors.blue);
-                    return '';
-                  }
-
-                  if(input.length <6){
-                    Get.snackbar('Warning', 'Password should be 6+ characters.',colorText: Colors.white,backgroundColor: Colors.blue);
-                    return '';
-                  }
-                },
-                controller: passwordController
-            ),
-            SizedBox(
-              height: Get.height * 0.02,
-            ),
-            myTextField(
-                bool: false,
-                icon: 'assets/lock.png',
-                text: 'Re-enter password',
-                validator: (input){
-                  if(input != passwordController.text.trim()){
-                    Get.snackbar('Warning', 'Confirm Password is not same as password.',colorText: Colors.white,backgroundColor: Colors.blue);
-                    return '';
-                  }
-                },
-                controller: confirmPasswordController
-            ),
-            Obx(()=> authController.isLoading.value? Center(child: CircularProgressIndicator(),) : Container(
-              height: 50,
-              margin: EdgeInsets.symmetric(
-                vertical: Get.height * 0.04,
-              ),
-              width: Get.width,
-              child: elevatedButton(
-                text: 'Sign Up',
-                onpress: () {
-
-                  if(!formKey.currentState!.validate()){
-                    return;
-                  }
-
-                  authController.signUp(email: emailController.text.trim(),password: passwordController.text.trim());
-
-
-
-                },
-              ),
-            )),
-            myText(
-              text: 'Or Connect With',
-              style: TextStyle(
-                fontSize: Get.height * 0.025,
-              ),
-            ),
-            SizedBox(
-              height: Get.height * 0.01,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-
-                socialAppsIcons(
-                    text: 'assets/google.png',
-                    onPressed: (){
-                      authController.signInWithGoogle();
-                    }
+              if (input.length < 6) {
+                Get.snackbar('Warning', 'Password should be 6+ characters.',
+                    colorText: Colors.white, backgroundColor: Colors.blue);
+                return '';
+              }
+            },
+            controller: passwordController),
+        SizedBox(
+          height: Get.height * 0.02,
+        ),
+        myTextField(
+            bool: false,
+            icon: 'assets/lock.png',
+            text: 'Re-enter password',
+            validator: (input) {
+              if (input != passwordController.text.trim()) {
+                Get.snackbar(
+                    'Warning', 'Confirm Password is not same as password.',
+                    colorText: Colors.white, backgroundColor: Colors.blue);
+                return '';
+              }
+            },
+            controller: confirmPasswordController),
+        Obx(() => authController.isLoading.value
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Container(
+                height: 50,
+                margin: EdgeInsets.symmetric(
+                  vertical: Get.height * 0.04,
                 ),
-              ],
-            ),
-            SizedBox(
-              height: Get.height * 0.02,
-            ),
-            Container(
-                width: Get.width * 0.8,
-                child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(children: [
-                    TextSpan(
-                        text:
-                        'By signing up, you agree our ',
-                        style: TextStyle(
-                            color: Color(0xff262628),
-                            fontSize: 12)),
-                    TextSpan(
-                        text:
-                        'terms, Data policy and cookies policy',
-                        style: TextStyle(
-                            color: Color(0xff262628),
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold)),
-                  ]),
-                )),
+                width: Get.width,
+                child: elevatedButton(
+                  text: 'Sign Up',
+                  onpress: () {
+                    if (!formKey.currentState!.validate()) {
+                      return;
+                    }
+
+                    authController.signUp(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim());
+                  },
+                ),
+              )),
+        myText(
+          text: 'Or Connect With',
+          style: TextStyle(
+            fontSize: Get.height * 0.025,
+          ),
+        ),
+        SizedBox(
+          height: Get.height * 0.01,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            socialAppsIcons(
+                text: 'assets/google.png',
+                onPressed: () {
+                  authController.signInWithGoogle();
+                }),
           ],
-        )
-
-    );
+        ),
+        SizedBox(
+          height: Get.height * 0.02,
+        ),
+        Container(
+            width: Get.width * 0.8,
+            child: RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(children: [
+                TextSpan(
+                    text: 'By signing up, you agree our ',
+                    style: TextStyle(color: Color(0xff262628), fontSize: 12)),
+                TextSpan(
+                    text: 'terms, Data policy and cookies policy',
+                    style: TextStyle(
+                        color: Color(0xff262628),
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold)),
+              ]),
+            )),
+      ],
+    ));
   }
-
 }

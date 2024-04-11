@@ -3,8 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:path/path.dart' as Path;
-import '../Home.dart';
-
+import 'package:restoapp/drawer/mainDrawer.dart';
 
 class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -14,11 +13,12 @@ class AuthController extends GetxController {
   void login({String? email, String? password}) {
     isLoading(true);
 
-    auth.signInWithEmailAndPassword(email: email!, password: password!).then((
-        value) {
+    auth
+        .signInWithEmailAndPassword(email: email!, password: password!)
+        .then((value) {
       /// Login Success
       isLoading(false);
-      Get.offAll(() => Home()); // Use Get.offAll to remove all previous routes
+      Get.offAll(() => MyApp()); // Use Get.offAll to remove all previous routes
     }).catchError((e) {
       isLoading(false);
       Get.snackbar('Error', "$e");
@@ -30,12 +30,13 @@ class AuthController extends GetxController {
   void signUp({String? email, String? password}) {
     isLoading(true);
 
-    auth.createUserWithEmailAndPassword(email: email!, password: password!)
+    auth
+        .createUserWithEmailAndPassword(email: email!, password: password!)
         .then((value) {
       isLoading(false);
 
       /// Navigate user to profile screen
-      Get.offAll(() => Home()); // Use Get.offAll to remove all previous routes
+      Get.offAll(() => MyApp()); // Use Get.offAll to remove all previous routes
     }).catchError((e) {
       /// print error information
       print("Error in authentication $e");
@@ -52,7 +53,6 @@ class AuthController extends GetxController {
     });
   }
 
-
   signInWithGoogle() async {
     isLoading(true);
     // Trigger the authentication flow
@@ -60,7 +60,7 @@ class AuthController extends GetxController {
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
-    await googleUser?.authentication;
+        await googleUser?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
@@ -73,7 +73,7 @@ class AuthController extends GetxController {
       isLoading(false);
 
       ///SuccessFull loged in
-      Get.to(() => Home());
+      Get.to(() => MyApp());
     }).catchError((e) {
       /// Error in getting Login
       isLoading(false);
@@ -81,7 +81,8 @@ class AuthController extends GetxController {
     });
   }
 }
-  var isProfileInformationLoading = false.obs;
+
+var isProfileInformationLoading = false.obs;
 
 /**  Future<String> uploadImageToFirebaseStorage(File image) async {
     String imageUrl = '';

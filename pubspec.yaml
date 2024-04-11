@@ -45,6 +45,10 @@ dependencies:
   firebase_storage:
   get:
   images_picker:
+  curved_drawer_fork: ^0.0.1+1
+  geolocator: ^11.0.0
+  permission_handler: ^11.0.1
+  geocoding: ^3.0.0
 
 
 dev_dependencies:
@@ -75,6 +79,13 @@ flutter:
    - assets/lock.png
    - assets/google.png
    - assets/facebook.png
+   - assets\images\pexels-robin-stickel-70497.jpg
+   - assets\images\offert.png
+   - assets\images\deeal.png
+   - assets\images\DISCOUNT.png
+   - assets\images\restaurant_photo1.jpg
+   - assets\images\restaurant_photo2.jpg
+   - assets\images\restaurant_photo3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:restoapp/FireStore/uploaddata.dart';
-import 'package:restoapp/Home.dart';
 import 'package:restoapp/Loginsignup/Loginsignup.dart';
 
 import 'FireStore/imageupload.dart';
@@ -11,7 +10,7 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- // Stripe.publishableKey = publishableKey;
+  // Stripe.publishableKey = publishableKey;
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -28,11 +27,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:FirebaseAuth.instance.currentUser == null?upload():upload(),
+      home: FirebaseAuth.instance.currentUser == null ? upload() : upload(),
     );
   }
 }
